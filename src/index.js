@@ -7,8 +7,20 @@ dotenv.config({
 
 
 connectDB()
-
-
+.then(()=>{
+    app.listen(process.env.PORT,()=>{
+        console.log(`app is listening on port:${process.env.PORT}`);
+        app.on("ERROR",(error)=>{
+            console.log("Error",error);
+            throw error
+            
+        })
+        
+    })
+})
+.catch((error)=>{
+    console.log(`Error is from app .js`,error)
+})
 
 
 
